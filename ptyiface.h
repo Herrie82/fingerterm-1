@@ -24,7 +24,11 @@
 #include <QSocketNotifier>
 #include <QByteArray>
 #include <QSize>
+#if QT_VERSION >= 0x060000
+#include <QtCore5Compat/QTextCodec>
+#else
 #include <QTextCodec>
+#endif
 
 class Terminal;
 

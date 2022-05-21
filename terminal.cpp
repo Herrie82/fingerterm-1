@@ -20,6 +20,7 @@
 #include <QGuiApplication>
 #include <QClipboard>
 #include <QDebug>
+#include <QByteArray>
 
 #include "terminal.h"
 #include "ptyiface.h"
@@ -325,7 +326,7 @@ void Terminal::keyPress(int key, int modifiers, const QString& text)
 
         if (asciiVal >= 0x41 && asciiVal <= 0x5f) {
             // Turn uppercase characters into their control code equivalent
-            toWrite.append(asciiVal - 0x40);
+            toWrite.append(QChar(asciiVal - 0x40));
         } else {
             qWarning() << "Ctrl+" << c << " does not translate into a control code";
         }
@@ -1112,7 +1113,7 @@ void Terminal::escControlChar(const QString& seq)
             iTabStops.append(QList<int>());
 
         iTabStops[cursorPos().y()-1].append(cursorPos().x());
-        qSort(iTabStops[cursorPos().y()-1]);
+        std::sort(iTabStops[cursorPos().y()-1].begin(),iTabStops[cursorPos().y()-1].end());
     }
     else if(ch.toLatin1()=='D') {  // cursor down/scroll down one line
         scrollFwd(1, cursorPos().y());

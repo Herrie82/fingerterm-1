@@ -1,4 +1,8 @@
-QT = core gui qml quick
+QT = core gui qml quick 
+
+equals(QT_MAJOR_VERSION, 6):{
+    QT += core5compat
+}
 
 CONFIG += link_pkgconfig
 

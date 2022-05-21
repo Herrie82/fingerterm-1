@@ -18,6 +18,7 @@
 */
 
 #include <QtGui>
+#include <QFontMetrics>
 #include "textrender.h"
 #include "terminal.h"
 #include "util.h"
@@ -76,7 +77,7 @@ TextRender::TextRender(QQuickItem *parent) :
     iShowBufferScrollIndicator = false;
 
     iFont = QFont(sUtil->fontFamily(), sUtil->fontSize());
-    iFont.setStyleHint(QFont::Monospace, QFont::StyleStrategy(QFont::PreferDefault | QFont::ForceIntegerMetrics));
+    iFont.setStyleHint(QFont::Monospace, QFont::StyleStrategy(QFont::PreferDefault));
     iFont.setBold(false);
     QFontMetrics fontMetrics(iFont);
     iFontHeight = fontMetrics.height();
