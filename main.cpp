@@ -107,7 +107,8 @@ int main(int argc, char *argv[])
         if (settings->contains("ui/orientationMask")) {
             mask &= settings->value("ui/orientationMask").toInt();
         }
-        sc->setOrientationUpdateMask(mask);
+        //FIXME No longer available in QScreen in Qt6
+        //sc->setOrientationUpdateMask(mask);
     }
 
     qmlRegisterType<TextRender>("FingerTerm", 1, 0, "TextRender");
